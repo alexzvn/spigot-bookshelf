@@ -1,8 +1,8 @@
-package dev.alexzvn.plugin;
+package io.mineverse.game;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Plugin extends JavaPlugin {
+public class Bookshelf extends JavaPlugin {
     
     @Override
     public void onEnable() {

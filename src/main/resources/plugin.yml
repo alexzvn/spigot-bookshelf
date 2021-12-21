@@ -1,6 +1,6 @@
-name: Plugin
-main: dev.alexzvn.plugin.Plugin
+name: ${project.name}
+main: io.mineverse.game.Bookshelf
 
 author: Alexzvn
-descriptions: A simple plugin
-version: 0.0.1
+descriptions: A none
+version: ${project.version}
