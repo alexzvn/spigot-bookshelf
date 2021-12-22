@@ -1,0 +1,7 @@
+
+
+market:
+  socket-io: ws://mineverse.io/game/topic
+
+bookshelf:
+  socket-io: ws://bookshelf.mineverse.io/game/topic
