@@ -8,7 +8,7 @@ public abstract class CancellableEvent extends Event implements Cancellable {
     /**
      * Call the logic of event if it is not cancelled.
      */
-    abstract public void finish();
+    abstract protected void onApprove();
 
     @Override
     public boolean isCancelled() {

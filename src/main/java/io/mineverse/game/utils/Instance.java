@@ -1,5 +1,7 @@
 package io.mineverse.game.utils;
 
+import java.lang.reflect.Method;
+
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 
@@ -18,8 +20,20 @@ public class Instance {
 
         CancellableEvent cancellable = (CancellableEvent) event;
 
-        if (cancellable.isCancelled() == false) {
-            cancellable.finish();
+        if (cancellable.isCancelled()) {
+            return;
+        }
+
+        try {
+            Method method = cancellable.getClass().getMethod("onApprove");
+
+            method.setAccessible(true);
+
+            method.invoke(event);
+        }
+
+        catch (Throwable e) {
+            e.printStackTrace();
         }
     }
 
