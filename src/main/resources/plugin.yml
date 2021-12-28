@@ -1,7 +1,9 @@
+author: Alexzvn
 name: Bookshelf
 main: io.mineverse.game.Bookshelf
-
-author: Alexzvn
 descriptions: A none
+website: mineverse.io
+
 version: 0.0.1
 api-version: 1.16
+load: STARTUP
