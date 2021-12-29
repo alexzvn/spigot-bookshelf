@@ -1,7 +1,5 @@
-
-
-market:
-  socket-io: ws://mineverse.io/game/topic
+prefix: ""
 
 bookshelf:
-  socket-io: ws://bookshelf.mineverse.io/game/topic
+  socket: ws://bookshelf.mineverse.io:7688
+  token: 'your bookshelf token'
