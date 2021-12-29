@@ -14,4 +14,8 @@ public class Log {
     public static void warning(String message) {
         log().warning(Message.prefixColor(message));
     }
+
+    public static void error(String message) {
+        log().severe(Message.prefixColor(message));
+    }
 }
