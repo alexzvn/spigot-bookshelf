@@ -4,7 +4,7 @@ import org.bukkit.event.HandlerList;
 
 abstract public class Event extends org.bukkit.event.Event {
 
-    protected static HandlerList handlers = new HandlerList();
+    protected HandlerList handlers = new HandlerList();
 
     @Override
     public HandlerList getHandlers() {
