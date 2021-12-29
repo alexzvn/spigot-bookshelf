@@ -20,6 +20,8 @@ public class Bookshelf extends JavaPlugin {
         instance = this;
 
         eventRegister = new EventRegister();
+
+        BookshelfAPI.setInstance(new BookshelfAPI(this));
     }
 
     @Override
@@ -33,6 +35,8 @@ public class Bookshelf extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        BookshelfAPI.setInstance(null);
+
         try {
             socket.disconnect();
         } catch (Exception e) {
