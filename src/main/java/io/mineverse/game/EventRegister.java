@@ -36,7 +36,7 @@ public class EventRegister {
         socket.on(Socket.EVENT_CONNECT_ERROR, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
-                Log.warning("Can't connect to the bookshelf server!");
+                Log.error("Can't connect to the bookshelf server!");
             }
         });
 
