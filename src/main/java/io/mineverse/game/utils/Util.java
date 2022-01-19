@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.UUID;
 
 import com.google.common.io.Files;
 
@@ -124,5 +125,25 @@ public class Util {
         }
 
         dropItem(item, player.getLocation());
+    }
+
+    public static UUID dashedUUID(String uuid) {
+        StringBuilder builder = new StringBuilder(uuid.trim());
+
+        /* Backwards adding to avoid index adjustments */
+        try {
+            builder.insert(20, "-");
+            builder.insert(16, "-");
+            builder.insert(12, "-");
+            builder.insert(8, "-");
+        } catch (StringIndexOutOfBoundsException e){
+            throw new IllegalArgumentException();
+        }
+
+        return UUID.fromString(builder.toString());
+    }
+
+    public static UUID dashlessUUID(String uuid) {
+        return UUID.fromString(uuid.replace("-", ""));
     }
 }
