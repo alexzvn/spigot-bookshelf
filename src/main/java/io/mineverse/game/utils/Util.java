@@ -143,7 +143,7 @@ public class Util {
         return UUID.fromString(builder.toString());
     }
 
-    public static UUID dashlessUUID(String uuid) {
-        return UUID.fromString(uuid.replace("-", ""));
+    public static String dashlessUUID(UUID uuid) {
+        return uuid.toString().replace("-", "");
     }
 }
