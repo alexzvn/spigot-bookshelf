@@ -1,5 +1,6 @@
 package io.mineverse.game;
 
+import io.mineverse.game.bookshelf.PlayerRepository;
 import io.socket.client.Socket;
 
 public final class BookshelfAPI {
@@ -17,6 +18,10 @@ public final class BookshelfAPI {
      */
     public String lastEventId() {
         return book.getEventRegister().getLastEventId();
+    }
+
+    public PlayerRepository getPlayerRepository() {
+        return new PlayerRepository();
     }
 
     /**

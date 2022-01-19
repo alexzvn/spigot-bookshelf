@@ -1,5 +1,6 @@
 prefix: ""
 
 bookshelf:
+  endpoint: https://bookshelf.mineverse.io:3000
   socket: ws://bookshelf.mineverse.io:7688
   token: 'your bookshelf token'

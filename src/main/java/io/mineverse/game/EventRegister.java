@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import io.mineverse.game.foundation.Event;
+import io.mineverse.game.listeners.*;
 import io.mineverse.game.utils.Instance;
 import io.mineverse.game.utils.Log;
 import io.mineverse.game.utils.Util;
@@ -52,9 +53,15 @@ public class EventRegister {
             public void call(Object... args) {
                 Log.info("Authenticated with bookshelf server.");
 
+                addListenersToSocket(socket);
+
                 socket.emit("ready", getLastEventId());
             }
         });
+    }
+
+    protected void addListenersToSocket(Socket socket) {
+        socket.on("player:wallet:linked", new WalletLinkedListener());
     }
 
     public void dispatchConfirm(Event event, String id) {

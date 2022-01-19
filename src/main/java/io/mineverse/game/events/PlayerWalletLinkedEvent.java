@@ -1,22 +1,31 @@
 package io.mineverse.game.events;
 
+import java.util.UUID;
+
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+
 import io.mineverse.game.foundation.Event;
 
 public class PlayerWalletLinkedEvent extends Event {
 
-    private String player;
+    private Player player;
     private String wallet;
 
-    public PlayerWalletLinkedEvent(String player, String wallet) {
-        this.player = player;
+    public PlayerWalletLinkedEvent(String player_uuid, String wallet) {
+        this.player = Bukkit.getPlayer(UUID.fromString(player_uuid));
         this.wallet = wallet;
     }
 
-    public String getPlayer() {
-        return this.player;
+    public Player getPlayer() {
+        return player;
     }
 
-    public String getWallet() {
+    public Boolean isPlayerOffline() {
+        return player == null;
+    }
+
+    public String getWalletAddress() {
         return this.wallet;
     }
 }
