@@ -53,20 +53,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>fr.xephi</groupId>
-            <artifactId>authme</artifactId>
-            <version>5.6.0-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-          <groupId>com.github.TownyAdvanced</groupId>
-          <artifactId>towny</artifactId>
-          <version>0.97.5.0</version>
-          <scope>provided</scope>
-        </dependency>
-
         <!-- WebSockets Server Dependency -->
         <dependency>
           <groupId>io.socket</groupId>
