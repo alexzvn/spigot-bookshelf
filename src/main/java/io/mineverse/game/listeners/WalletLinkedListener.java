@@ -11,13 +11,15 @@ public class WalletLinkedListener extends Listener {
 
     @Override
     public void call(Object... args) {
-        JSONObject object = Json.parse((String) args[0]);
+        JSONObject object = Json.parse(args[0].toString());
+
+        JSONObject payload = (JSONObject) object.get("payload");
 
         Event event = new PlayerWalletLinkedEvent(
-            object.get("player_id").toString(),
-            object.get("wallet").toString()
+            (String) payload.get("player_uuid"),
+            (String) payload.get("wallet")
         );
 
-        dispatch(event, object.get("id").toString());
+        dispatch(event, (String) object.get("_id"));
     }
 }
