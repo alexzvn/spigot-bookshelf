@@ -12,7 +12,6 @@ import io.mineverse.game.foundation.ResponseDataAPI;
 import io.mineverse.game.foundation.SimpleAPI;
 import io.mineverse.game.utils.Config;
 import io.mineverse.game.utils.Json;
-import io.mineverse.game.utils.Log;
 import io.mineverse.game.utils.Util;
 
 public class PlayerRepository {
