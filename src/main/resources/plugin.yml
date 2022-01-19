@@ -4,5 +4,5 @@ main: io.mineverse.game.Bookshelf
 descriptions: A none
 website: mineverse.io
 
-version: 0.0.2
+version: 0.0.3
 api-version: 1.16
