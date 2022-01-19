@@ -3,7 +3,7 @@
 ## Setup
 
 Add content bellow to to file `pom.xml`
-```
+```xml
 <dependency>
   <groupId>io.mineverse</groupId>
   <artifactId>bookshelf</artifactId>
