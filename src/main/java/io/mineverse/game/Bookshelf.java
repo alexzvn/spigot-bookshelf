@@ -2,6 +2,7 @@ package io.mineverse.game;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import io.mineverse.game.meta.GameMeta;
 import io.mineverse.game.utils.Config;
 import io.mineverse.game.utils.Instance;
 import io.socket.client.Socket;
@@ -22,6 +23,8 @@ public class Bookshelf extends JavaPlugin {
         eventRegister = new EventRegister();
 
         BookshelfAPI.setInstance(new BookshelfAPI(this));
+
+        new GameMeta().bind();
     }
 
     @Override
@@ -36,12 +39,7 @@ public class Bookshelf extends JavaPlugin {
     @Override
     public void onDisable() {
         BookshelfAPI.setInstance(null);
-
-        try {
-            socket.disconnect();
-        } catch (Exception e) {
-            //TODO: handle exception
-        }
+        socket.disconnect();
     }
 
     public EventRegister getEventRegister() {

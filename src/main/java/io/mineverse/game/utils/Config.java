@@ -44,7 +44,7 @@ public class Config {
         return config().getLong(path, def);
     }
 
-    protected static FileConfiguration config() {
+    public static FileConfiguration config() {
         return Instance.plugin().getConfig();
     }
 }

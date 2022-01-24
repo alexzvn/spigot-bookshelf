@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.net.URI;
 
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
@@ -76,5 +77,9 @@ public class Instance {
 
     public static Socket getBookshelfSocket() {
         return plugin().getBookshelfSocket();
+    }
+
+    public static NamespacedKey getNamespacedKey(String key) {
+        return new NamespacedKey(plugin(), key);
     }
 }

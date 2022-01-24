@@ -4,3 +4,12 @@ bookshelf:
   endpoint: https://bookshelf.mineverse.io:3000
   socket: ws://bookshelf.mineverse.io:7688
   token: 'your bookshelf token'
+
+item-command:
+  enable: false
+  name: "Item"
+  lore: []
+  slot: 17
+  command: help
+  custom-data: 0
+  operator: true
