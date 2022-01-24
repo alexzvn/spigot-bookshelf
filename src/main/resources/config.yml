@@ -10,6 +10,7 @@ item-command:
   name: "Item"
   lore: []
   slot: 17
+  material: PAPER
   command: help
   custom-data: 0
   operator: true

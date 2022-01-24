@@ -23,8 +23,6 @@ public class Bookshelf extends JavaPlugin {
         eventRegister = new EventRegister();
 
         BookshelfAPI.setInstance(new BookshelfAPI(this));
-
-        new GameMeta().bind();
     }
 
     @Override
@@ -34,6 +32,8 @@ public class Bookshelf extends JavaPlugin {
         eventRegister.bind(socket, Config.getString("bookshelf.token"));
 
         socket.connect();
+
+        new GameMeta().bind();
     }
 
     @Override
