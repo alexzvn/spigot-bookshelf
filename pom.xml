@@ -32,16 +32,9 @@
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots</url>
         </repository>
 
-        <!-- Authme repo -->
         <repository>
-          <id>codemc-repo</id>
-          <url>https://repo.codemc.org/repository/maven-public/</url>
-        </repository>
-
-        <!-- Manage land towny -->
-        <repository>
-          <id>jitpack.io</id>
-          <url>https://jitpack.io</url>
+          <id>placeholderapi</id>
+          <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
     </repositories>
 
@@ -51,6 +44,13 @@
             <artifactId>spigot-api</artifactId>
             <version>1.16.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+          <groupId>me.clip</groupId>
+           <artifactId>placeholderapi</artifactId>
+           <version>2.11.1</version>
+          <scope>provided</scope>
         </dependency>
 
         <!-- WebSockets Server Dependency -->

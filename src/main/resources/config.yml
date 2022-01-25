@@ -11,6 +11,12 @@ item-command:
   lore: []
   slot: 17
   material: PAPER
-  command: help
+
+  # already integrate with PlaceholderAPI
+  command: help 
+
+  # custom mode data work with texture pack
   custom-data: 0
-  operator: true
+
+  # possible value is: player, console, operator
+  run-as: null 

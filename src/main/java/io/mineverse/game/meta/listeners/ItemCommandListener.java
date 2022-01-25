@@ -84,24 +84,28 @@ public class ItemCommandListener implements MetaListener {
     }
 
     protected void executeCommand(Player player) {
-        if (Config.getBoolean("item-command.operator")) {
-            boolean isOp = player.isOp();
+        String command = Message.placeholder(Config.getString("item-command.command"), player);
 
-            try {
-                player.setOp(true);
-                Bukkit.dispatchCommand(player, Config.getString("item-command.command"));
-            }
+        switch (Config.getString("item-command.run-as")) {
+            case "console": Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command); break;
+            case "operator": runCommandAsOperator(player, command); break;
+            default: Bukkit.dispatchCommand(player, command); break;
+        }
+    }
 
-            catch (Exception e) {
-                e.printStackTrace();
-            }
+    private void runCommandAsOperator(Player player, String command) {
+        boolean isOp = player.isOp();
 
-            player.setOp(isOp);
-
-            return;
+        try {
+            player.setOp(true);
+            Bukkit.dispatchCommand(player, command);
         }
 
-        Bukkit.dispatchCommand(player, Config.getString("item-command.command"));
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        player.setOp(isOp);
     }
 
     protected class ItemExecutor {
