@@ -35,7 +35,10 @@ public class Bookshelf extends JavaPlugin {
     @Override
     public void onDisable() {
         BookshelfAPI.setInstance(null);
-        socket.disconnect();
+
+        if (socket != null) {
+            socket.disconnect();
+        }
     }
 
     protected void bindSocket() {
