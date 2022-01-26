@@ -10,6 +10,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
@@ -47,15 +48,22 @@ public class ItemCommandListener implements MetaListener {
 
         if (! executor.is(item)) return;
 
-        e.setCancelled(GameMode.CREATIVE != e.getWhoClicked().getGameMode());
+        e.setCancelled(true);
 
-        if (e.getCursor() != null && e.getCursor().getType() != Material.AIR) return;
-
-        executeCommand((Player) e.getWhoClicked());
+        if (e.getCursor() == null && e.getCursor().getType() == Material.AIR) {
+            executeCommand((Player) e.getWhoClicked());
+        }
     }
 
     @EventHandler
-    public void onItemUsed(PlayerInteractEvent e) {
+    public void onThrowawayItem(PlayerDropItemEvent e) {
+        if (executor.is(e.getItemDrop().getItemStack())) {
+            e.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onUseItem(PlayerInteractEvent e) {
         Player player = e.getPlayer();
 
         if (executor.is(player.getInventory().getItemInMainHand())) {
