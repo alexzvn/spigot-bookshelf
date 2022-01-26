@@ -27,11 +27,7 @@ public class Bookshelf extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        socket = Instance.createSocket(Config.getString("bookshelf.socket"));
-
-        eventRegister.bind(socket, Config.getString("bookshelf.token"));
-
-        socket.connect();
+        bindSocket();
 
         new GameMeta().bind();
     }
@@ -40,6 +36,16 @@ public class Bookshelf extends JavaPlugin {
     public void onDisable() {
         BookshelfAPI.setInstance(null);
         socket.disconnect();
+    }
+
+    protected void bindSocket() {
+        if (Config.getBoolean("bookshelf.enable") == false) return;
+
+        socket = Instance.createSocket(Config.getString("bookshelf.socket"));
+
+        eventRegister.bind(socket, Config.getString("bookshelf.token"));
+
+        socket.connect();
     }
 
     public EventRegister getEventRegister() {
