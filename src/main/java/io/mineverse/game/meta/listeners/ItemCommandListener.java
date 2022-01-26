@@ -9,6 +9,8 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Event.Result;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -23,6 +25,7 @@ import org.bukkit.persistence.PersistentDataType;
 import io.mineverse.game.utils.Config;
 import io.mineverse.game.utils.Instance;
 import io.mineverse.game.utils.Message;
+import io.mineverse.game.utils.Util;
 
 public class ItemCommandListener implements MetaListener {
 
@@ -42,16 +45,22 @@ public class ItemCommandListener implements MetaListener {
         setup(e.getPlayer());
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGH)
     public void onItemClicked(InventoryClickEvent e) {
         ItemStack item = e.getCurrentItem();
+        Player player = (Player) e.getWhoClicked();
 
         if (! executor.is(item)) return;
 
-        e.setCancelled(true);
+        e.setResult(Result.DENY);
 
-        if (e.getCursor() == null && e.getCursor().getType() == Material.AIR) {
-            executeCommand((Player) e.getWhoClicked());
+        // TODO remove temporary fix for game mode creative
+        if (player.getGameMode() == GameMode.CREATIVE) {
+            player.closeInventory();
+        }
+
+        if (Util.isAirItem(e.getCursor())) {
+            executeCommand(player);
         }
     }
 
