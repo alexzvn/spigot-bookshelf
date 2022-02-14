@@ -20,4 +20,4 @@ item-command:
   custom-data: 0
 
   # possible value is: player, console, operator
-  run-as: null 
+  run-as: player
