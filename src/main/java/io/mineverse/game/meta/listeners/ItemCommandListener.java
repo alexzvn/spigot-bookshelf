@@ -1,6 +1,7 @@
 package io.mineverse.game.meta.listeners;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -11,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Event.Result;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -52,15 +54,26 @@ public class ItemCommandListener implements MetaListener {
 
         if (! executor.is(item)) return;
 
-        e.setResult(Result.DENY);
+        e.setCancelled(true);
 
-        // TODO remove temporary fix for game mode creative
-        if (player.getGameMode() == GameMode.CREATIVE) {
-            player.closeInventory();
+        if (! Util.isAirItem(e.getCursor()) || player.getGameMode() == GameMode.CREATIVE) {
+            e.setCancelled(false);
+            return;
         }
 
         if (Util.isAirItem(e.getCursor())) {
+            player.closeInventory();
             executeCommand(player);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+    public void blockDrops(PlayerDeathEvent e) {
+        Iterator<ItemStack> iterator =  e.getDrops().iterator();
+
+        while (iterator.hasNext()) {
+            ItemStack next = iterator.next();
+            if (executor.is(next)) iterator.remove();
         }
     }
 
