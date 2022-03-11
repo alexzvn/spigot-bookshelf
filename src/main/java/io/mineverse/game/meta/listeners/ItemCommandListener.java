@@ -11,9 +11,9 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.Event.Result;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCreativeEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -47,7 +47,7 @@ public class ItemCommandListener implements MetaListener {
         setup(e.getPlayer());
     }
 
-    @EventHandler(priority = EventPriority.HIGH)
+    @EventHandler(ignoreCancelled = true)
     public void onItemClicked(InventoryClickEvent e) {
         ItemStack item = e.getCurrentItem();
         Player player = (Player) e.getWhoClicked();
@@ -56,14 +56,20 @@ public class ItemCommandListener implements MetaListener {
 
         e.setCancelled(true);
 
-        if (! Util.isAirItem(e.getCursor()) || player.getGameMode() == GameMode.CREATIVE) {
-            e.setCancelled(false);
-            return;
+        if (Util.isAirItem(e.getCursor())) {
+            executeCommand(player);
         }
 
-        if (Util.isAirItem(e.getCursor())) {
+        // fix duplicate item
+        if (player.getGameMode() == GameMode.CREATIVE) {
             player.closeInventory();
-            executeCommand(player);
+            player.updateInventory();
+        }
+    }
+
+    public void preventDragItemCreativeMode(InventoryCreativeEvent e) {
+        if (executor.is(e.getCurrentItem())) {
+            e.setCancelled(true);
         }
     }
 
