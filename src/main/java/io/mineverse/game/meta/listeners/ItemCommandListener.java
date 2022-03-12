@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -13,7 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCreativeEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -57,20 +56,12 @@ public class ItemCommandListener implements MetaListener {
         e.setCancelled(true);
 
         if (Util.isAirItem(e.getCursor())) {
-            executeCommand(player);
+            Bukkit.getScheduler().runTaskLater(Instance.plugin(), () -> {
+                player.openInventory(Bukkit.createInventory(null, InventoryType.CHEST));
+            }, 1l);
         }
 
-        // fix duplicate item
-        if (player.getGameMode() == GameMode.CREATIVE) {
-            player.closeInventory();
-            player.updateInventory();
-        }
-    }
-
-    public void preventDragItemCreativeMode(InventoryCreativeEvent e) {
-        if (executor.is(e.getCurrentItem())) {
-            e.setCancelled(true);
-        }
+        player.updateInventory();
     }
 
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
