@@ -53,14 +53,18 @@ public class ItemCommandListener implements MetaListener {
 
         if (! executor.is(item)) return;
 
-        e.setCancelled(true);
-
         if (Util.isAirItem(e.getCursor())) {
             Bukkit.getScheduler().runTaskLater(Instance.plugin(), () -> {
                 player.openInventory(Bukkit.createInventory(null, InventoryType.CHEST));
             }, 1l);
+
+            Bukkit.getScheduler().runTaskLater(Instance.plugin(), () -> {
+                player.closeInventory();
+                executeCommand(player);
+            }, 2l);
         }
 
+        e.setCancelled(true);
         player.updateInventory();
     }
 
