@@ -6,6 +6,18 @@ bookshelf:
   socket: ws://bookshelf.mineverse.io:7688
   token: 'your bookshelf token'
 
+rabbitmq:
+  host: localhost
+  port: 5672
+
+  use_auth: false
+  username:
+  password:
+
+market:
+  endpoint: http://localhost
+  access_token: abc_xyz
+
 item-command:
   enable: false
   name: "Item"
