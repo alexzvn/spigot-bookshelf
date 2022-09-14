@@ -6,7 +6,7 @@
 
   <groupId>io.mineverse</groupId>
   <artifactId>bookshelf</artifactId>
-  <version>0.0.5</version>
+  <version>1.0.5</version>
   <packaging>jar</packaging>
 
   <name>Bookshelf</name>
@@ -52,6 +52,27 @@
            <version>2.11.1</version>
           <scope>provided</scope>
         </dependency>
+
+        <dependency>
+          <groupId>com.rabbitmq</groupId>
+          <artifactId>amqp-client</artifactId>
+          <version>5.16.0</version>
+        </dependency>
+
+        <dependency>
+          <groupId>com.jonahseguin</groupId>
+          <artifactId>drink</artifactId>
+          <version>1.0.5</version> 
+          <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+          <groupId>com.aventrix.jnanoid</groupId>
+          <artifactId>jnanoid</artifactId>
+          <version>2.0.0</version>
+          <scope>compile</scope>
+        </dependency>
+
 
         <!-- WebSockets Server Dependency -->
         <dependency>
@@ -110,6 +131,11 @@
                 <relocation>
                   <pattern>io.socket</pattern>
                   <shadedPattern>io.socket</shadedPattern>
+                </relocation>
+
+                <relocation>
+                  <pattern>com.rabbitmq</pattern>
+                  <shadedPattern>com.rabbitmq</shadedPattern>
                 </relocation>
 
                 <relocation>
