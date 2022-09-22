@@ -26,6 +26,9 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
+    - name: Build dependency
+      run: cd .. && git clone https://github.com/jonahseguin/drink.git && cd drink && mvn clean package install
+
     - name: Build with Maven
       run: mvn install
 
