@@ -7,6 +7,6 @@ Add content bellow to to file `pom.xml`
 <dependency>
   <groupId>io.mineverse</groupId>
   <artifactId>bookshelf</artifactId>
-  <version>0.0.5</version>
+  <version>1.0.5</version>
 </dependency>
 ```
