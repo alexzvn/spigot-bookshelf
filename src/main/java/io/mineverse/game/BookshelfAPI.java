@@ -2,9 +2,6 @@ package io.mineverse.game;
 
 import com.rabbitmq.client.Connection;
 
-import io.mineverse.game.bookshelf.PlayerRepository;
-import io.socket.client.Socket;
-
 public final class BookshelfAPI {
     private static BookshelfAPI instance;
 
@@ -12,28 +9,6 @@ public final class BookshelfAPI {
 
     public BookshelfAPI(Bookshelf bookshelf) {
         book = bookshelf;
-    }
-
-    /**
-     * @deprecated
-     */
-    public String lastEventId() {
-        return book.getEventRegister().getLastEventId();
-    }
-
-    /**
-     * @deprecated
-     */
-    public PlayerRepository getPlayerRepository() {
-        return new PlayerRepository();
-    }
-
-    /**
-     * Get socket connect to bookshelf server.
-     * @deprecated
-     */
-    public Socket getSocket() {
-        return book.getBookshelfSocket();
     }
 
     /**

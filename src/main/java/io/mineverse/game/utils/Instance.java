@@ -75,10 +75,6 @@ public class Instance {
         return Bookshelf.getInstance();
     }
 
-    public static Socket getBookshelfSocket() {
-        return plugin().getBookshelfSocket();
-    }
-
     public static NamespacedKey getNamespacedKey(String key) {
         return new NamespacedKey(plugin(), key);
     }

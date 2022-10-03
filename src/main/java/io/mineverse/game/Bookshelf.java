@@ -10,17 +10,11 @@ import com.rabbitmq.client.ConnectionFactory;
 
 import io.mineverse.game.meta.GameMeta;
 import io.mineverse.game.utils.Config;
-import io.mineverse.game.utils.Instance;
 import io.mineverse.game.utils.Log;
-import io.socket.client.Socket;
 
 public class Bookshelf extends JavaPlugin {
 
     protected static Bookshelf instance;
-
-    protected Socket socket;
-
-    protected EventRegister eventRegister;
 
     protected Connection rabbitConnection;
 
@@ -30,14 +24,12 @@ public class Bookshelf extends JavaPlugin {
         this.saveDefaultConfig();
 
         instance = this;
-        eventRegister = new EventRegister();
 
         BookshelfAPI.setInstance(new BookshelfAPI(this));
     }
 
     @Override
     public void onEnable() {
-        bindSocket();
 
         try {
             rabbitConnection = createRabbitConnection();
@@ -57,10 +49,6 @@ public class Bookshelf extends JavaPlugin {
     public void onDisable() {
         BookshelfAPI.setInstance(null);
 
-        if (socket != null) {
-            socket.disconnect();
-        }
-
         if (rabbitConnection != null) {
             try {
                 rabbitConnection.close();
@@ -70,16 +58,6 @@ public class Bookshelf extends JavaPlugin {
         }
 
         rabbitConnection = null;
-    }
-
-    protected void bindSocket() {
-        if (Config.getBoolean("bookshelf.enable") == false) return;
-
-        socket = Instance.createSocket(Config.getString("bookshelf.socket"));
-
-        eventRegister.bind(socket, Config.getString("bookshelf.token"));
-
-        socket.connect();
     }
 
     protected Connection createRabbitConnection() throws IOException, TimeoutException {
@@ -102,14 +80,6 @@ public class Bookshelf extends JavaPlugin {
 
     public GameMeta getGameMeta() {
         return gameMeta;
-    }
-
-    public EventRegister getEventRegister() {
-        return eventRegister;
-    }
-
-    public Socket getBookshelfSocket() {
-        return socket;
     }
 
     public static Bookshelf getInstance() {
