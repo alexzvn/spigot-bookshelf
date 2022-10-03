@@ -60,9 +60,9 @@
         </dependency>
 
         <dependency>
-          <groupId>com.jonahseguin</groupId>
-          <artifactId>drink</artifactId>
-          <version>1.0.5</version> 
+          <groupId>org.xerial</groupId>
+          <artifactId>sqlite-jdbc</artifactId>
+          <version>3.15.1</version>
           <scope>compile</scope>
         </dependency>
 
