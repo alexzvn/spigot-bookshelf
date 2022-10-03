@@ -1,5 +1,6 @@
 prefix: ""
 
+# this will be removed in futher release
 bookshelf:
   enable: false
   endpoint: https://bookshelf.mineverse.io:3000
@@ -11,8 +12,8 @@ rabbitmq:
   port: 5672
 
   use_auth: false
-  username:
-  password:
+  username: 
+  password: 
 
 market:
   endpoint: http://localhost

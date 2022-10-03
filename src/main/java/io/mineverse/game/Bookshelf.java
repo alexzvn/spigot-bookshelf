@@ -5,8 +5,6 @@ import java.util.concurrent.TimeoutException;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.jonahseguin.drink.CommandService;
-import com.jonahseguin.drink.Drink;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
@@ -26,15 +24,12 @@ public class Bookshelf extends JavaPlugin {
 
     protected Connection rabbitConnection;
 
-    protected CommandService cmd;
-
     protected GameMeta gameMeta;
 
     public Bookshelf() {
         this.saveDefaultConfig();
 
         instance = this;
-        cmd = Drink.get(this);
         eventRegister = new EventRegister();
 
         BookshelfAPI.setInstance(new BookshelfAPI(this));
@@ -43,8 +38,6 @@ public class Bookshelf extends JavaPlugin {
     @Override
     public void onEnable() {
         bindSocket();
-
-        cmd.register(new BookshelfCommand(), "bookshelf", "bs");
 
         try {
             rabbitConnection = createRabbitConnection();
@@ -56,8 +49,6 @@ public class Bookshelf extends JavaPlugin {
         gameMeta = new GameMeta();
 
         gameMeta.bind();
-
-        cmd.registerCommands();
 
         Log.info("Bookshelf has been enabled!");
     }
@@ -79,10 +70,6 @@ public class Bookshelf extends JavaPlugin {
         }
 
         rabbitConnection = null;
-    }
-
-    public CommandService getCommandService() {
-        return cmd;
     }
 
     protected void bindSocket() {
