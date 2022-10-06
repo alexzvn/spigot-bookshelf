@@ -32,7 +32,9 @@ public abstract class BaseGUI implements InventoryHolder {
 
     /**
      * Setup inventory after define
-     * such as slot, mask, etc, ... 
+     * such as slot, mask, etc, ...
+     * 
+     * note: for click outside inventory, set slot -999 to handle it
      */
     abstract public void setup();
 
@@ -69,13 +71,18 @@ public abstract class BaseGUI implements InventoryHolder {
     }
 
     void handleClick(InventoryClickEvent e) {
-        if (e.getSlot() == e.getRawSlot()) {
+        if (e.getSlot() == e.getRawSlot() && slots.containsKey(e.getSlot())) {
+
             slots.get(e.getSlot()).click(e);
         }
     }
 
-    final public Slot getSlot(int slot) {
-        return slots.get(slot);
+    final public Slot getSlot(int index) {
+        if (!slots.containsKey(index)) {
+            slots.put(index, new Slot(index, inventory));
+        }
+
+        return slots.get(index);
     }
 
     @Override

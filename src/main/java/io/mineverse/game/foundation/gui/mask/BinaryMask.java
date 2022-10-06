@@ -26,7 +26,7 @@ public class BinaryMask extends Mask {
         }
 
         if (type == '0') {
-            slot.clearClickTypes();
+            slot.allowAll();
         }
     }
 
