@@ -1,0 +1,4 @@
+name: Bookshelf
+main: io.mineverse.bungee.BungeeBookshelf
+version: 1.1.7
+author: Alexzvn
